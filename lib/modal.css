@@ -22,34 +22,6 @@
   margin-bottom: 20px;
 }
 
-/*
-.materialize-modal .modal-content .modal-title {
-  font-size: 2.28rem;
-  line-height: 2.508rem;
-  margin: 1.14rem 0 0.912rem 0;
+div[data-modalize-dispatcher] {
+  display: hidden;
 }
-
-
-
-.materialize-modal .alert {
-
-}
-
-
-
-.materialize-modal .prompt {
-
-}
-
-.materialize-modal .form-group {
-
-}
-
-.materialize-modal .room-for-spin {
-
-}
-
-.materialize-modal #progressMessage {
-
-}
-*/

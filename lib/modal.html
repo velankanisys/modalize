@@ -7,12 +7,13 @@
   {{/if}}
 </template>
 
-<template name="materializeModalBody">
+<template name="modalizeBody">
   <div class="modal-content">
+    <div data-modalize-dispatcher></div>
+
     <!-- Add a title, if one was defined -->
     {{#if title}}
       <h4 class="modal-title" id="materializeModalLabel">
-        {{#if icon}}<i class="material-icons">{{icon}}</i>{{/if}}
         {{{title}}}
       </h4>
     {{/if}}
@@ -22,9 +23,12 @@
       {{> Template.contentBlock }}
     </div>
   </div>
+</template>
 
-  <!--  Add in footer, if one was defined -->
-  {{> Template.dynamic template=modalFooter data=this}}
+<template name="modalizeFooter">
+  <div class="modal-footer">
+    {{> Template.contentBlock}}
+  </div>
 </template>
 
 <template name="materializeModal">
@@ -32,76 +36,13 @@
     {{#if fixedFooter}}modal-fixed-footer{{/if}}
     {{#if bottomSheet}}bottom-sheet{{/if}}
     {{#if fullscreen}}full-screen{{/if}} {{class}}">
-
-    {{#materializeModalForm}}
-      {{#if bodyTemplate}}
-        <!--  If a bodyTemplate was specified, insert it here. -->
-        {{> Template.dynamic template=bodyTemplate data=this}}
-      {{else}}
-        <!-- If no bodyTemplate, render message instead. -->
-        {{#materializeModalBody}}
-          {{{message}}}
-        {{/materializeModalBody}}
-      {{/if}}
-    {{/materializeModalForm}}
+    {{> Template.dynamic template=template data=this}}
   </div>
 </template>
 
 
-<template name="materializeModalFooter">
-  <div class="modal-footer">
-    {{#if submitLabel}}
-      <button id="submitButton" type="submit" class="waves-effect btn-flat {{btnSize}}">{{{submitLabel}}}</button>
-    {{/if}}
-    {{#if closeLabel}}
-      <button id="closeButton" class="waves-effect btn-flat {{btnSize}}">{{{closeLabel}}}</button>
-    {{/if}}
-  </div>
-</template>
 
 <!-- Templates to insert into the mainBody above -->
-
-<template name="materializeModalAlert">
-  {{#materializeModalBody}}
-    <div class="alert alert-warning">
-      <strong id='label'>{{label}}</strong> <span id='message'>{{{message}}}</span>
-    </div>
-  {{/materializeModalBody}}
-</template>
-
-<template name="materializeModalError">
-  {{#materializeModalBody}}
-    <div class="alert alert-danger">
-      <h4 id='label'>{{label}}</h4>
-      <strong id ='message'>{{message}}</strong>
-    </div>
-  {{/materializeModalBody}}
-</template>
-
-<template name="materializeModalPrompt">
-  {{#materializeModalBody}}
-    <div class="prompt">
-      <div class="col s12">
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="prompt-input" class="validate" type="text" placeholder="{{placeholder}}" required autofocus />
-            <label for="prompt-input">{{message}}</label>
-          </div>
-        </div>
-      </div>
-    </div>
-  {{/materializeModalBody}}
-</template>
-
-<template name="materializeModalForm">
-  {{#if isForm}}
-    <form id="materializeModalForm" class="{{formClass}}">
-      {{> Template.contentBlock}}
-    </form>
-  {{else}}
-    {{> Template.contentBlock}}
-  {{/if}}
-</template>
 
 <template name="materializeModalProgress">
   {{#materializeModalBody}}
@@ -112,27 +53,6 @@
       {{progress}} <span class="grey-text text-darken-1">{{message}}</span>
     </div>
   {{/materializeModalBody}}
-</template>
-
-<template name="materializeModalStatus">
-  {{#materializeModalBody}}
-    <div id="statusMessage">
-      <i class="fa fa-spinner fa-spin fa-2x"></i>
-      <span class="room-for-spin" id="progressMessage">{{progressMessage}}</span>
-    </div>
-  {{/materializeModalBody}}
-</template>
-
-<template name="materializeModalSelect">
-  <p><strong>{{message}}</strong></p>
-  <select>
-    {{#each items}}
-      <option value="{{number}}">{{displayName}}</option>
-      {{#each childeren}}
-        <option value="{{number}}"> &nbsp; {{displayName}}</option>
-      {{/each}}
-    {{/each}}
-  </select>
 </template>
 
 <template name="materializeModalLoading">

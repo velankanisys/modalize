@@ -1,6 +1,6 @@
 Package.describe({
   name: "msolters:modalize",
-  summary: "Seamless reactive modals for Materialize.",
+  summary: "Seamless, reactive template-based modals for Materialize.",
   version: "1.0.0",
   git: "https://github.com/msolters/modalize.git"
 });
@@ -25,7 +25,7 @@ Package.onUse(function(api, where) {
   api.addFiles([
     'lib/modal.css',
     'lib/modal.html',
-    'lib/MaterializeModal.coffee',
+    'lib/Modalize.coffee',
     'lib/modal.coffee'
   ], 'client');
 

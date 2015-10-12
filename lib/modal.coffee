@@ -1,6 +1,5 @@
 DEBUG = false
 
-
 ###
 #     Template.materializeModalContainer
 ###
@@ -42,51 +41,18 @@ Template.materializeModal.onRendered ->
   #
   Materialize.modalize.$modal.openModal
     in_duration: inDuration
+    dismissible: false
     ready: ->
       console.log("materializeModal: ready") if DEBUG
+      $("div.lean-overlay").click (e) ->
+        Materialize.modalize.$dispatcher.trigger
+          type: 'dismissed'
     complete: ->
       console.log("materializeModal: complete") if DEBUG
-      Materialize.modalize.close false
 
 
 Template.materializeModal.onDestroyed ->
   console.log("Template.materializeModal.onDestroyed") if DEBUG
-
-
-Template.materializeModal.helpers
-
-  #
-  # bodyTemplate: The name of the template that should be rendered
-  #               in the modal's body area.
-  #
-  bodyTemplate: ->
-    @bodyTemplate or null
-
-  #
-  # icon: Return a Material icon code for the Modal.
-  #
-  icon: ->
-    if @icon
-      @icon
-    else
-      console.log("icon: type", @type) if DEBUG
-      switch @type
-        when 'alert'
-          'warning'
-        when 'error'
-          'error'
-
-  #
-  # modalFooter:
-  #
-  modalFooter: ->
-    @footerTemplate or 'materializeModalFooter'
-
-#
-# Extend data context helpers (title, footer, etc.) into the modal
-# body wrapper.
-#
-Template.materializeModalBody.inheritsHelpersFrom "materializeModal"
 
 Template.materializeModal.events
   "click #closeButton": (e, tmpl) ->
@@ -98,15 +64,12 @@ Template.materializeModal.events
     e.preventDefault()
     form = tmpl?.$('form#materializeModalForm')
     console.log('submit event:', e, "form:", form) if DEBUG
-    Materialize.modalize.close true,
-      event: e
-      form: form
+    Materialize.modalize.close true
     false # this prevents the page from refreshing on form submission!
 
 
-Template.materializeModalForm.helpers
-  #
-  # isForm: Only true when the modal is a form.
-  #
-  isForm: ->
-    @type in [ 'form', 'prompt' ]
+###
+#     Template.materializeModalBody
+###
+Template.modalizeBody.rendered = ->
+  Materialize.modalize.$dispatcher = $ @find 'div[data-modalize-dispatcher]'
