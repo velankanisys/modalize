@@ -11,8 +11,6 @@ This package seeks to provide the following solutions:
 *  Robust events:  Modal templates have access to all the events contained in the modal, including custom events such as `dismissed`, which is fired when the user exits a modal by clicking away from it.
 *  Natural Materialize integration:  Modalize is directly accessible from the `Materialize` object: `Materialize.modalize.display()`, `Materialize.modalize.close()`, etc.
 
-### [Demo & Documentation](http://modalize.meteor.com)
-
 ## Install
 
 ```bash
@@ -22,29 +20,24 @@ meteor add msolters:modalize
 ## Usage
 
 ```
-	MaterializeModal.[message|alert|error|confirm|prompt|form|loading|progress](options={})
+	Materialize.modalize.display( options={} ); // display a modal
+	Materialize.modalize.close();	// dismiss current modal
 ```
 
-### Options
+## Options
 
-* title - Modal title. Can have HTML markup.  (Optional)
 * template - The template to be rendered as a modal.  (Required)
-* fixedFooter - (bool) true if you want to use a [fixed footer](http://materializecss.com/modals.html#fixed-footer).  Recommended for fullscreen modals.  (Optional)
+* title - Modal title. Can have HTML markup.  (Optional)
+* dismiss - (bool) false if you want to override the default modal dismissal behaviour.  (Optional)
+* fixedFooter - (bool) true if you want to use a [fixed footer](http://materializecss.com/modals.html#fixed-footer).  Recommended for fullScreen & bottomSheet modals.  (Optional)
 * bottomSheet - (bool) If you want a bottom sheet modal.  (Optional)
 * fullScreen - (bool) Modal takes up all the full screen.  (Optional)
 
 ## Examples
+For examples and interactive previews, [check out the demo site](http://modalize.meteor.com)!
 
-
-To display a modal
-
-```coffeescript
-
-MaterializeModal.display
-    title: 'Showing myTemplate'
-    template: 'myTemplate'        
-```
-
+## Notes
+This package depends on and automatically includes the [materialize:materialize](https://atmospherejs.com/materialize/materialize) package.
 
 ## License
 MIT
