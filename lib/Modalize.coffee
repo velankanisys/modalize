@@ -3,7 +3,7 @@ DEBUG = false
 
 class Modalize
   defaults:
-    title: 'Modal Template'
+    title: null
     dismiss: true
 
   constructor: ->
