@@ -1,7 +1,7 @@
 Package.describe({
   name: "msolters:modalize",
   summary: "Seamless, reactive template-based modals for Materialize.",
-  version: "1.0.0",
+  version: "1.0.1",
   git: "https://github.com/msolters/modalize.git"
 });
 
