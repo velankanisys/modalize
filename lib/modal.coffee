@@ -1,10 +1,4 @@
-
 DEBUG = false
-
-#
-# Create modal object under Materialize namespace.
-#
-Materialize.modal = new MaterializeModalClass()
 
 
 ###
@@ -29,7 +23,7 @@ Template.materializeModal.onRendered ->
   # (1) Update the jQuery handle of the modal instance with the latest
   #     modal DOM element.
   #
-  Materialize.modal.$modal = $ @find '#materializeModal'
+  Materialize.modalize.$modal = $ @find '#materializeModal'
 
   #
   # (2) Compute modal animation duration.
@@ -46,13 +40,13 @@ Template.materializeModal.onRendered ->
   # if the user "completes" the modal, for instance by clicking
   # the background.
   #
-  Materialize.modal.$modal.openModal
+  Materialize.modalize.$modal.openModal
     in_duration: inDuration
     ready: ->
       console.log("materializeModal: ready") if DEBUG
     complete: ->
       console.log("materializeModal: complete") if DEBUG
-      Materialize.modal.close false
+      Materialize.modalize.close false
 
 
 Template.materializeModal.onDestroyed ->
@@ -98,13 +92,13 @@ Template.materializeModal.events
   "click #closeButton": (e, tmpl) ->
     e.preventDefault()
     console.log('closeButton') if DEBUG
-    Materialize.modal.close(false)
+    Materialize.modalize.close(false)
 
   "submit form#materializeModalForm, click button#submitButton": (e, tmpl) ->
     e.preventDefault()
     form = tmpl?.$('form#materializeModalForm')
     console.log('submit event:', e, "form:", form) if DEBUG
-    Materialize.modal.close true,
+    Materialize.modalize.close true,
       event: e
       form: form
     false # this prevents the page from refreshing on form submission!

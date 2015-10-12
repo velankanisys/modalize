@@ -1,9 +1,7 @@
-
 DEBUG = false
 
 
-class @MaterializeModalClass
-
+class MaterializeModalClass
   defaults:
     title: 'Message'
     message: ''
@@ -227,25 +225,7 @@ class @MaterializeModalClass
       options.callback(error, null)
     true
 
-
-### Loading, Status, Progress code etc.
-
-  status: (message, callback, title = 'Status', cancelText = 'Cancel') ->
-    @_setData message, title, "materializeModalstatus",
-      message: message
-    @callback = callback
-    @set("submitLabel", cancelText)
-    @_show()
-
-
-  updateProgressMessage: (message) ->
-    if DEBUG
-      console.log("updateProgressMessage", $("#progressMessage").html(), message)
-    if $("#progressMessage").html()?
-      $("#progressMessage").fadeOut 400, ->
-        $("#progressMessage").html(message)
-        $("#progressMessage").fadeIn(400)
-    else
-      @set("message", message)
-
-###
+#
+# Create modal object under Materialize namespace.
+#
+Materialize.modalize = new MaterializeModalClass()
