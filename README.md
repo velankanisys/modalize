@@ -31,16 +31,7 @@ meteor add msolters:modalize
 * template - The template to be rendered as a modal.  (Required)
 * fixedFooter - (bool) true if you want to use a [fixed footer](http://materializecss.com/modals.html#fixed-footer).  Recommended for fullscreen modals.  (Optional)
 * bottomSheet - (bool) If you want a bottom sheet modal.  (Optional)
-* fullscreen - (bool) Modal takes up all the full screen.  (Optional)
-
-## UI
-You can change the UI by overwriting the CSS.
-
-```
-.materialize-modal {
-  // See source for all the css vars
-}
-```
+* fullScreen - (bool) Modal takes up all the full screen.  (Optional)
 
 ## Examples
 
@@ -50,14 +41,10 @@ To display a modal
 ```coffeescript
 
 MaterializeModal.display
-    title: 'Title'
-    message: 'some message'        
+    title: 'Showing myTemplate'
+    template: 'myTemplate'        
 ```
 
-
-## Notes
-
-There might be are more undocumented options that need to be documented.  See code.
 
 ## License
 MIT
