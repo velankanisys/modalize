@@ -1,6 +1,10 @@
 .materialize-modal {
   color: #000;
 }
+.modal .modal-footer {
+  padding-right: 10px;
+  padding-left: 10px;
+}
 .materialize-modal.full-screen {
   height: 100% !important;
   position: fixed;
@@ -12,16 +16,6 @@
   width: 100%;
   padding: 0.5em;
 }
-
-#materialModalLoading {
-  margin-bottom: 0;
-}
-#loadingMessage {
-  font-size: 26px;
-  font-weight: 100;
-  margin-bottom: 20px;
-}
-
 div[data-modalize-dispatcher] {
   display: hidden;
 }
