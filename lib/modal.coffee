@@ -43,30 +43,33 @@ Template.materializeModal.onRendered ->
     in_duration: inDuration
     dismissible: false
     ready: ->
-      console.log("materializeModal: ready") if DEBUG
+      console.log("Modalize: ready") if DEBUG
       $("div.lean-overlay").click (e) ->
+        #
+        # (1) If the user clicks the modal overlay, issue the
+        #     "dismissed" event to the modal body template.
+        #
         Materialize.modalize.$dispatcher.trigger
           type: 'dismissed'
+        #
+        # (2) Close the modal unless the user has specifically set
+        #     dismiss: false.
+        #
+        if Materialize.modalize.templateOptions.get().dismiss
+          Materialize.modalize.close()
+
     complete: ->
-      console.log("materializeModal: complete") if DEBUG
+      console.log("Modalize: complete") if DEBUG
 
 
 Template.materializeModal.onDestroyed ->
   console.log("Template.materializeModal.onDestroyed") if DEBUG
 
 Template.materializeModal.events
-  "click #closeButton": (e, tmpl) ->
+  "click [data-modalize-close]": (e, tmpl) ->
     e.preventDefault()
-    console.log('closeButton') if DEBUG
-    Materialize.modalize.close(false)
-
-  "submit form#materializeModalForm, click button#submitButton": (e, tmpl) ->
-    e.preventDefault()
-    form = tmpl?.$('form#materializeModalForm')
-    console.log('submit event:', e, "form:", form) if DEBUG
-    Materialize.modalize.close true
-    false # this prevents the page from refreshing on form submission!
-
+    console.log('Modalize: Close Button') if DEBUG
+    Materialize.modalize.close()
 
 ###
 #     Template.materializeModalBody

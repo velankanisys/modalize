@@ -4,6 +4,7 @@ DEBUG = false
 class Modalize
   defaults:
     title: 'Modal Template'
+    dismiss: true
 
   constructor: ->
     #
@@ -70,11 +71,7 @@ class Modalize
 
   display: (options = {}) ->
     _.defaults options,
-      message: null
-      title: null
-      submitLabel: null
-      closeLabel: 'cancel'
-    , @defaults
+      @defaults
     @open options
 
 #
