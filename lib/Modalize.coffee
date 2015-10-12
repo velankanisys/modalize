@@ -9,17 +9,17 @@ class Modalize
   constructor: ->
     #
     # templateOptions:  Setting this reactive var will automatically
-    #                   cause materializeModalContainer to re-render.
+    #                   cause modalizeContainer to re-render.
     #                   It starts with a default value of no modal content.
     @templateOptions = new ReactiveVar()
     #
-    # $modal:           This is a jQuery handle on the #materializeModal
+    # $modal:           This is a jQuery handle on the #modalizeModal
     #                   DOM node itself.  This is the object we call
     #                   .openModal() and .closeModal() on.
     #
     @$modal = null
     #
-    # $dispatcher:      This is a jQuery handle on the #materializeModal
+    # $dispatcher:      This is a jQuery handle on the #modalizeModal
     #                   DOM node itself.  This is the object we call
     #                   .openModal() and .closeModal() on.
     #
@@ -28,12 +28,12 @@ class Modalize
 
   #
   # injectContainer:  This method makes sure there is one copy
-  #                   of materializeModalContainer in the body
+  #                   of modalizeContainer in the body
   #                   to hold the modal content.
   #                   Notice we do not create duplicates.
   #
   injectContainer: ->
-    @modalContainer = Blaze.renderWithData(Template.materializeModalContainer, @templateOptions, document.body) if not @modalContainer?
+    @modalContainer = Blaze.renderWithData(Template.modalizeContainer, @templateOptions, document.body) if not @modalContainer?
 
 
   #
@@ -50,7 +50,7 @@ class Modalize
     @injectContainer()
     #
     # (2) Update the this.options ReactiveVar, which will
-    #     cause the dynamic Template inside materializeModalContainer
+    #     cause the dynamic Template inside modalizeContainer
     #     to re-render.
     #
     @templateOptions.set options
@@ -58,7 +58,7 @@ class Modalize
 
   #
   # close: Close the modal.
-  #        Do not destroy materializeModalContainer.
+  #        Do not destroy modalizeContainer.
   #
   close: ->
     console.log "MaterializeModal.close()" if DEBUG

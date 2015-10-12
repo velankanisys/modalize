@@ -18,7 +18,6 @@ Package.onUse(function(api, where) {
 
   api.use([
     'materialize:materialize@0.97.0',
-    'aldeed:template-extension@3.4.3',
     'coffeescript'
   ], ["client"]);
 
@@ -28,10 +27,6 @@ Package.onUse(function(api, where) {
     'lib/Modalize.coffee',
     'lib/modal.coffee'
   ], 'client');
-
-  /*if (api.export) {
-    api.export('MaterializeModal')
-  }*/
 
 });
 

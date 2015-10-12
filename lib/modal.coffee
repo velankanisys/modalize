@@ -1,28 +1,28 @@
 DEBUG = false
 
 ###
-#     Template.materializeModalContainer
+#     Template.modalizeContainer
 ###
-Template.materializeModalContainer.helpers
+Template.modalizeContainer.helpers
   modalOptions: ->
     Template.currentData().get()
 
 
 ###
-#     Template.materializeModal
+#     Template.modalizeModal
 ###
-Template.materializeModal.onCreated ->
-  console.log("Template.materializeModal.onCreated", @data) if DEBUG
+Template.modalizeModal.onCreated ->
+  console.log("Template.modalizeModal.onCreated", @data) if DEBUG
 
 
-Template.materializeModal.onRendered ->
-  console.log("Template.materializeModal.onRendered", @data.title)  if DEBUG
+Template.modalizeModal.onRendered ->
+  console.log("Template.modalizeModal.onRendered", @data.title)  if DEBUG
 
   #
   # (1) Update the jQuery handle of the modal instance with the latest
   #     modal DOM element.
   #
-  Materialize.modalize.$modal = $ @find '#materializeModal'
+  Materialize.modalize.$modal = $ @find '#modalizeModal'
 
   #
   # (2) Compute modal animation duration.
@@ -35,7 +35,7 @@ Template.materializeModal.onRendered ->
   # (3) Call Materialize's openModal() method to make
   #     the modal content appear.
   #
-  # Set a callback to handle destroying the materializeModal template
+  # Set a callback to handle destroying the modalizeModal template
   # if the user "completes" the modal, for instance by clicking
   # the background.
   #
@@ -62,17 +62,24 @@ Template.materializeModal.onRendered ->
       console.log("Modalize: complete") if DEBUG
 
 
-Template.materializeModal.onDestroyed ->
-  console.log("Template.materializeModal.onDestroyed") if DEBUG
+Template.modalizeModal.onDestroyed ->
+  console.log("Template.modalizeModal.onDestroyed") if DEBUG
 
-Template.materializeModal.events
+Template.modalizeModal.events
+  #
+  # Clicking any element with the data-modalize-close attribute
+  # should trigger the modal to close.
+  #
   "click [data-modalize-close]": (e, tmpl) ->
-    e.preventDefault()
     console.log('Modalize: Close Button') if DEBUG
     Materialize.modalize.close()
 
 ###
-#     Template.materializeModalBody
+#     Template.modalizeBody
 ###
 Template.modalizeBody.rendered = ->
+  #
+  # When a new modal is rendered, update the jQuery handle of the
+  # hidden target element used to dispatch events into the modal.
+  #
   Materialize.modalize.$dispatcher = $ @find 'div[data-modalize-dispatcher]'

@@ -1,8 +1,8 @@
-<template name="materializeModalContainer">
+<template name="modalizeContainer">
   {{#if modalOptions}}
     <!--  if modalOptions is null, do not render anything! -->
     {{#with modalOptions}}
-      {{> materializeModal }}
+      {{> modalizeModal }}
     {{/with}}
   {{/if}}
 </template>
@@ -13,7 +13,7 @@
 
     <!-- Add a title, if one was defined -->
     {{#if title}}
-      <h4 class="modal-title" id="materializeModalLabel">
+      <h4 class="modal-title" id="modalizeModalLabel">
         {{{title}}}
       </h4>
     {{/if}}
@@ -31,8 +31,8 @@
   </div>
 </template>
 
-<template name="materializeModal">
-  <div id="materializeModal" class="materialize-modal modal
+<template name="modalizeModal">
+  <div id="modalizeModal" class="materialize-modal modal
     {{#if fixedFooter}}modal-fixed-footer{{/if}}
     {{#if bottomSheet}}bottom-sheet{{/if}}
     {{#if fullScreen}}full-screen{{/if}} {{class}}">
