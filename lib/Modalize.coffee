@@ -3,14 +3,7 @@ DEBUG = false
 
 class Modalize
   defaults:
-    title: 'Message'
-    message: ''
-    type: 'message'
-    closeLabel: null
-    submitLabel: 'ok'
-    inputSelector: '#prompt-input'
-    callback: null
-
+    title: 'Modal Template'
 
   constructor: ->
     #
@@ -63,14 +56,10 @@ class Modalize
 
 
   #
-  # close( submit, context ): Close the modal.
-  #                           Do not destroy materializeModalContainer.
-  #                           - submit is a bool that determines whether
-  #                             doSubmitCallback or doCancelCallback is called.
-  #                           - context is the data that might be relevant to
-  #                             the submitCallback, such as the submitted form.
+  # close: Close the modal.
+  #        Do not destroy materializeModalContainer.
   #
-  close: (submit=false, context=null) ->
+  close: ->
     console.log "MaterializeModal.close()" if DEBUG
     if @templateOptions.get()? # if there are no options, there is no modal -- there is nothing to close!
       @$modal.closeModal
@@ -79,11 +68,6 @@ class Modalize
           @$dispatcher = null
           @$modal = null
 
-
-  #
-  # MaterializeModal common modal types:
-  #
-  #
   display: (options = {}) ->
     _.defaults options,
       message: null
@@ -92,28 +76,6 @@ class Modalize
       closeLabel: 'cancel'
     , @defaults
     @open options
-
-  loading: (options = {}) ->
-    _.defaults options,
-      message: 'Loading'
-      title: null
-      bodyTemplate: 'materializeModalLoading'
-      submitLabel: 'cancel'
-    , @defaults
-    @open options
-
-  progress: (options = {}) ->
-    if not options.progress?
-      Materialize.toast "Error: No progress value specified!", 3000, "red"
-    else
-      options.progress = parseInt(100 * options.progress).toString() + "%" # prettify progress value!
-      _.defaults options,
-        message: null
-        title: null
-        bodyTemplate: 'materializeModalProgress'
-        submitLabel: 'close'
-      , @defaults
-      @open options
 
 #
 # Create modal object under Materialize namespace.
