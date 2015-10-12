@@ -19,3 +19,7 @@
 div[data-modalize-dispatcher] {
   display: hidden;
 }
+
+#toast-container {
+  z-index: 1005;
+}
