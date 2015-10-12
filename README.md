@@ -1,7 +1,7 @@
 Modalize
 ========================
 
-Seamless, reactive and template-based modals for [Materialize](http://materializecss.com).  This is a radically modified fork of the very useful [meteorstuff:materialize-modal](https://github.com/MeteorStuff/meteor-materialize-modal) package, started by @pfafman.  If you don't want (or need) full Meteoric event maps or fine-tuned modal control, you should check it out!
+Seamless, reactive and template-based modals for [Materialize](http://materializecss.com).  This is a radically modified fork of the very useful [meteorstuff:materialize-modal](https://github.com/MeteorStuff/meteor-materialize-modal) package, started by [*@pfafman*](https://github.com/pfafman).  If you don't want (or need) full Meteoric event maps or fine-tuned modal control, you should check it out!
 
 This package seeks to provide the following solutions:
 
