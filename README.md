@@ -1,29 +1,23 @@
-Meteor-Materialize-Modal
+Modalize
 ========================
 
-A pattern to display application modal dialogs via [Materialize](http://materializecss.com), written in coffeescript.
+Seamless, reactive and template-based modals for [Materialize](http://materializecss.com).  This is a radically modified fork of the very useful [meteorstuff:materialize-modal](https://github.com/MeteorStuff/meteor-materialize-modal) package, started by @pfafman.  If you don't want (or need) full Meteoric event maps or fine-tuned modal control, you should check it out!
 
-### [Demo Site](http://materializemodal.meteor.com)
+This package seeks to provide the following solutions:
 
-*Warning: Only tested on Meteor 1.2+*
+*  Simple execution: Just pass template names, and let Materialize handle the rendering!
+*  Full extensibility:  Write full, detailed Meteoric event maps to fully control your modals behaviour!  No messy callbacks.
+*  Convenient configuration:  Provides easy-to-use modal body & footer helpers that make it easy to implement great-looking full screen and fixed footer style modals.
+*  Robust events:  Modal templates have access to all the events contained in the modal, including custom events such as `dismissed`, which is fired when the user exits a modal by clicking away from it.
+*  Natural Materialize integration:  Modalize is directly accessible from the `Materialize` object: `Materialize.modalize.display()`, `Materialize.modalize.close()`, etc.
 
-### Version 1.0 Changes
-* *The callbacks have changed form in version 1.0 to reflect the 'node way'.*  So you need to change your callback from `callback(yesNo, ...)` to `callback(error, rtn)`.  `yesNo` is now at `rtn.submit`!  If you don't have time to make the change lock your package at the 0.4.0 version `meteor add pfafman:materialize-modal@=0.4.0`
-
-* *There is now a very good example [***site***](http://materializemodal.meteor.com) done by [*@msolters*](https://github.com/msolters), who also did the refractoring work for version 1.0. and added new modals!*
+### [Demo & Documentation](http://modalize.meteor.com)
 
 ## Install
 
 ```bash
-meteor add meteorstuff:materialize-modal
+meteor add msolters:modalize
 ```
-
-or for the old callback version
-
-```
-meteor add meteorstuff:materialize-modal@=0.4.0
-```
-
 
 ## Usage
 
@@ -33,22 +27,11 @@ meteor add meteorstuff:materialize-modal@=0.4.0
 
 ### Options
 
-* title - modal title. Can have HTML markup
-* label - Strong label in front of body
-* message - message body.  Can have HTML markup
-* placeholder - If prompt then the placehoder for the text field
-* callback(error, rtn) - callback function with 
-	* rtn.submit - bool true if the user hit the OK/Submit button
-	* rtn.value - applicable data object key:value
-	
-
-* bodyTemplate - Name of the template to use as the body for the modal.
-* icon - Markup for the icon to display
-* closeLabel - Text for close/dismiss button
-* submitLabel - Text for ok/submit button
-* fixedFooter - (bool) true if you want to use a [fixed footer](http://materializecss.com/modals.html#fixed-footer)
-* bottomSheet - (bool) true if you want a bottom sheet modal
-* fullscreen - (bool) Modal takes up all the full screen
+* title - Modal title. Can have HTML markup.  (Optional)
+* template - The template to be rendered as a modal.  (Required)
+* fixedFooter - (bool) true if you want to use a [fixed footer](http://materializecss.com/modals.html#fixed-footer).  Recommended for fullscreen modals.  (Optional)
+* bottomSheet - (bool) If you want a bottom sheet modal.  (Optional)
+* fullscreen - (bool) Modal takes up all the full screen.  (Optional)
 
 ## UI
 You can change the UI by overwriting the CSS.
@@ -66,37 +49,10 @@ To display a modal
 
 ```coffeescript
 
-MaterializeModal.message
+MaterializeModal.display
     title: 'Title'
-    message: 'some message'
-    
-MaterializeModal.alert
-    message: 'some message'
-
-MaterializeModal.error
-    message: 'some message'
-
-MaterializeModal.confirm
-    title: 'title'
-    message: 'You feeling groovy?'
-    callback: (error, rtn) ->
-    	if rtn?.submit
-    	    Materialize.toast("Glad to here it!", 3000, 'green')
-    	else
-    		Materialize.toast("Too bad")
-
-MaterializeModal.prompt
-	message: 'Enter something'
-	callback: (error, rtn) ->
-		if rtn?.submit
-			Materialize.toast("You entered #{rtn.value}", 3000, 'green')
-
-MaterializeModal.form
-	bodyTemplate: 'testForm'
-	callback: (error, rtn ->
-		if rtn.submit
-			console.log("Form data", rtn.value)         
-```	
+    message: 'some message'        
+```
 
 
 ## Notes
@@ -105,4 +61,3 @@ There might be are more undocumented options that need to be documented.  See co
 
 ## License
 MIT
-
