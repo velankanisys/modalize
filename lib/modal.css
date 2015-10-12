@@ -5,6 +5,9 @@
   padding-right: 10px;
   padding-left: 10px;
 }
+.modal-title i {
+  font-size: inherit;
+}
 .materialize-modal.full-screen {
   height: 100% !important;
   position: fixed;
