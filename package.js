@@ -1,8 +1,8 @@
 Package.describe({
-  name: "msolters:modalize",
-  summary: "Seamless, reactive template-based modals for Materialize.",
+  name: "velankani:modalize",
+  summary: "Fork of msolters:modalize to support master branch of materialize for Modals.",
   version: "1.0.1",
-  git: "https://github.com/msolters/modalize.git"
+  git: "https://github.com/velankanisys/modalize.git"
 });
 
 Package.onUse(function(api, where) {
@@ -17,7 +17,7 @@ Package.onUse(function(api, where) {
   ], 'client');
 
   api.use([
-    'materialize:materialize@0.97.0',
+    'velankani:materialize',
     'coffeescript'
   ], ["client"]);
 
